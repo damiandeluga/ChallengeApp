@@ -1,4 +1,4 @@
-﻿string name = "Ewa";
+string name = "Ewa";
 var gender = "kobieta";
 int age = 33;
 
