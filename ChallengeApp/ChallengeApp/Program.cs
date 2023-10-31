@@ -28,7 +28,7 @@ List<Employee> employees = new List<Employee>()
 };
 
 int highestResult = -1;
-Employee employeeWithHighestResult = null;
+Employee? employeeWithHighestResult = null;
 
 foreach (var employee in employees)
 {
