@@ -3,7 +3,7 @@
     public class TypeTests
     {
         [Test]
-        public void CompareIfTheyAreTheSame()
+        public void WhenCompareTwoSatring_ShouldNotBeEqual()
         {
             string name1 = "Darth Vader";
             string name2 = "Anakin Skywalker";
@@ -12,7 +12,7 @@
         }
 
         [Test]
-        public void CompareTwoIntegerNumbers()
+        public void WhenCompareTwoNumbers_ShouldNotBeEqual()
         {
             float numberA = 25.4f;
             float numberB = 18.7f;
@@ -20,15 +20,15 @@
             Assert.AreNotEqual(numberA, numberB);
         }
         [Test]
-        public void CompareTwoNumbers()
+        public void WhenCompareTwoNumbers_ShouldBeEqual()
         {
-            int number1 = 1;
-            int number2 = 2;
+            int number1 = 121;
+            int number2 = 121;
 
-            Assert.AreNotEqual(number1, number2);  
+            Assert.AreEqual(number1, number2);  
         }
         [Test]
-        public void TestGetUserShouldReturnDifference()
+        public void Employeetest_ShouldReturnNotEqual()
         {
             var employee1 = new Employee("Adam", "Pierwszy", 28);
             var employee2 = new Employee("Antoni", "Drugi", 18);
