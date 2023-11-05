@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel.Design;
+
 namespace ChallengeApp
 {
     public class Employee
@@ -15,9 +17,45 @@ namespace ChallengeApp
 
         public void AddGrade(float grade)
         {
-        this.grades.Add(grade);
-        }
+            
+            if(grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else 
+            {
+                Console.WriteLine("Incorrect data entered");
 
+            }
+        }
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+
+            }
+            else
+            {
+                Console.WriteLine("String is not float");
+
+            }
+        }
+        public void AddGrade(double grade)
+        {
+            float gradeInDouble = (float)grade;
+            AddGrade(gradeInDouble);
+        }
+        public void AddGrade(int grade)
+        {
+            float gradeInInt = (float)grade;
+            AddGrade(gradeInInt);
+        }
+        public void AddGrade(long grade)
+        {
+            float gradeInLong = (float)grade;
+            AddGrade(gradeInLong);
+        }
         public Statistics GetStatistics()
         { 
             var statistics = new Statistics();
