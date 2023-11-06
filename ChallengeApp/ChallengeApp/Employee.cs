@@ -8,7 +8,7 @@ namespace ChallengeApp
     public class Employee
     {
         private List<float> grades = new List<float>();
-         
+
         public Employee(string name, string surname)
         {
             this.Name = name;
@@ -16,7 +16,7 @@ namespace ChallengeApp
         }
         public string Name { get; private set; }
         public string Surname { get; private set; }
-        
+
         public void AddGrade(float grade)
         {
 
@@ -26,8 +26,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("Incorrect data entered");
-
+                throw new Exception($"Wrong grade range: Grade {grade} value must be in the range 0-100");
             }
         }
         public void AddGrade(string grade)
@@ -35,12 +34,10 @@ namespace ChallengeApp
             if (float.TryParse(grade, out float result))
             {
                 this.AddGrade(result);
-
             }
             else
             {
-                Console.WriteLine("String is not float");
-
+                throw new Exception("Invalid grade");
             }
         }
         public void AddGrade(double grade)
@@ -62,10 +59,10 @@ namespace ChallengeApp
         {
             switch (grade)
             {
-                case 'A' :
+                case 'A':
                 case 'a':
                     this.AddGrade(100);
-                        break;
+                    break;
                 case 'B':
                 case 'b':
                     this.AddGrade(80);
@@ -82,11 +79,12 @@ namespace ChallengeApp
                 case 'e':
                     this.AddGrade(40);
                     break;
-
-                default:
-                    Console.WriteLine("Wrong Grade Type");
+                case 'F':
+                case 'f':
+                    this.AddGrade(20);
                     break;
-
+                default:
+                    throw new Exception("This letter isn't correct form of rating");
             }
         }
         public Statistics GetStatistics()
@@ -121,24 +119,27 @@ namespace ChallengeApp
                 case var average when average >= 50:
                     statistics.AverageLetter = 'D';
                     break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'E';
+                    break;
                 default:
                     statistics.AverageLetter = 'E';
-                    break;                  
+                    break;
             }
-            return statistics;           
+            return statistics;
         }
     }
 }
 
-        
-
-        
 
 
-        
 
 
-        
 
-     
+
+
+
+
+
+
 

@@ -12,18 +12,23 @@ var employee = new Employee("Damian","Kowalski");
 
 while(true)
 {
-    Console.WriteLine("Proszê podaæ ocenê pracownika");
-   
+    Console.WriteLine("Proszê podaæ ocenê pracownika");  
     var input = Console.ReadLine();
     if (input =="q")
     {
         break;
     }
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Wykryto wyj¹tek: {ex.Message}");
+    }
     employee.AddGrade(input);
 
 }
-
-
 var statistics = employee.GetStatistics();
 Console.WriteLine($"MAX: {statistics.Max}");
 Console.WriteLine($"MIN: {statistics.Min}");
