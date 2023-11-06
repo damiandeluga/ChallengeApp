@@ -3,45 +3,50 @@
     public class Tests
     {
         [Test]
-        public void TestMinGradeofTheWorkerFromStatistics()
+        public void TestMinGradeofTheWorker()
         {
             var employee = new Employee("Damian", "Domalewski");
 
-            employee.AddGrade(4);
-            employee.AddGrade(5);
-            employee.AddGrade(9);
+            employee.AddGrade('a');
+            employee.AddGrade(20);
+            employee.AddGrade('B');
+            employee.AddGrade("30");
+
 
             var statistics = employee.GetStatistics();
-           
-            Assert.AreEqual(4.0f, statistics.Min);
+
+            Assert.AreEqual(20.0f, statistics.Min);
     
         }
         [Test]
-        public void TestMaxGradeofTheWorkerFromStatistics()
+        public void TestMaxGradeofTheWorker()
         {
             var employee = new Employee("Artur", "Durkowski");
 
-            employee.AddGrade(4);
-            employee.AddGrade(6);
-            employee.AddGrade(8);
+            employee.AddGrade('a');
+            employee.AddGrade(20);
+            employee.AddGrade(30);
+            employee.AddGrade("50");
 
             var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(8.0f, statistics.Max);
+            Assert.AreEqual(100.0f, statistics.Max);
       
         }
         [Test]
-        public void TestAverageGradeofTheWorkerFromStatistics()
+        public void TestAverageGradeofTheWorker()
         {
             var employee = new Employee("Cyprian", "Lizecki");
 
-            employee.AddGrade(10);
-            employee.AddGrade(15);
-            employee.AddGrade(5);
+            employee.AddGrade('b');
+            employee.AddGrade(20);
+            employee.AddGrade(30);
+            employee.AddGrade("15");
+            employee.AddGrade('A');
 
             var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(10.0F, statistics.Average);
+            Assert.AreEqual(49.0f, statistics.Average); 
 
 
 
