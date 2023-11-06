@@ -84,7 +84,6 @@ namespace ChallengeApp
                     break;
 
                 default:
-                    this.grades.Add(0);
                     Console.WriteLine("Wrong Grade Type");
                     break;
 
