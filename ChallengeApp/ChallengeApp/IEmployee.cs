@@ -13,6 +13,5 @@
         void AddGrade(long grade);
         void AddGrade(char grade);
         Statistics GetStatistics();
-
     }
 }

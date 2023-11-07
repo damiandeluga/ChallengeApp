@@ -1,33 +1,14 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    internal class EmployeeInMemory : EmployeeBase
     {
         private List<float> grades = new List<float>();
-
-        public Employee(string name, string surname, char gender)
+        public EmployeeInMemory(string name, string surname, char gender) 
+            : base(name, surname, gender)
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.Gender = gender;
         }
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public char Gender { get; private set; }
 
-
-        public void AddGrade(float grade)
-        {
-
-            if (grade >= 0 && grade <= 100)
-            {
-                this.grades.Add(grade);
-            }
-            else
-            {
-                throw new Exception($"Wrong grade range: Grade {grade} value must be in the range 0-100");
-            }
-        }
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
             {
@@ -38,23 +19,40 @@
                 throw new Exception("Invalid grade");
             }
         }
-        public void AddGrade(double grade)
+
+        public override void AddGrade(float grade)
+        {
+
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("Incorrect data entered");
+
+            }
+        }
+        public override void AddGrade(double grade)
         {
             float gradeInDouble = (float)grade;
             AddGrade(gradeInDouble);
         }
-        public void AddGrade(int grade)
+
+        public override void AddGrade(int grade)
         {
             float gradeInInt = (float)grade;
             AddGrade(gradeInInt);
         }
-        public void AddGrade(long grade)
+
+        public override void AddGrade(long grade)
         {
             float gradeInLong = (float)grade;
             AddGrade(gradeInLong);
         }
-        public void AddGrade(char grade)
-        {
+
+        public override void AddGrade(char grade)
+       {
             switch (grade)
             {
                 case 'A':
@@ -85,7 +83,8 @@
                     throw new Exception("This letter isn't correct form of rating");
             }
         }
-        public Statistics GetStatistics()
+
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
 
@@ -103,42 +102,7 @@
                 }
             }
             statistics.Average = statistics.Average /= this.grades.Count;
-            switch (statistics.Average)
-            {
-                case var average when average >= 90:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 70:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 50:
-                    statistics.AverageLetter = 'D';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'E';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
-            }
             return statistics;
         }
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

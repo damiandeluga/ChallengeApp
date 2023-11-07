@@ -7,7 +7,7 @@ Console.WriteLine();
 Console.WriteLine("Aby zobaczyæ koñcow¹ ocenê, proszê nacisn¹æ q");
 Console.WriteLine();
 
-var employee = new Employee("Damian","Kowalski",'m');
+var employee = new EmployeeInFile("Damian","Kowalski",'m');
 
 
 while(true)
