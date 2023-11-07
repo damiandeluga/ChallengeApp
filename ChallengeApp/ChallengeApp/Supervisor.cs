@@ -1,10 +1,10 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
-    {
+    internal class Supervisor : IEmployee
+    {     
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname, char gender)
+        public Supervisor(string name, string surname, char gender)
         {
             this.Name = name;
             this.Surname = surname;
@@ -22,21 +22,61 @@
             {
                 this.grades.Add(grade);
             }
-            else
-            {
-                throw new Exception($"Wrong grade range: Grade {grade} value must be in the range 0-100");
-            }
+            else throw new Exception($"Wrong grade range: Grade {grade} value must be in the range 0-100");
+           
         }
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
+            switch (grade)
             {
-                this.AddGrade(result);
-            }
-            else
-            {
-                throw new Exception("Invalid grade");
-            }
+                case "6":
+                AddGrade(100);
+                    break;
+                case "6-" or "-6":
+                    AddGrade(95);
+                    break;
+                case "5+" or "+5":
+                    AddGrade(90);
+                    break;
+                case "5":
+                    AddGrade(85);
+                    break;
+                case "5-" or "-5":
+                    AddGrade(80);
+                    break;
+                case "4+" or "+4":
+                    AddGrade(75);
+                    break;
+                case "4":
+                    AddGrade(70);
+                    break;
+                case "4-" or "-4":
+                    AddGrade(65);
+                    break;
+                case "3+" or "+3":
+                    AddGrade(60);
+                    break;
+                case "3":
+                    AddGrade(55);
+                    break;
+                case "3-" or "-3":
+                    AddGrade(50);
+                    break;
+                case "2+" or "+2":
+                    AddGrade(45);
+                    break;
+                case "2":
+                    AddGrade(30);
+                    break;
+                case "2-" or "-2":
+                    AddGrade(15);
+                    break;
+                case "1":
+                    AddGrade(0);
+                    break;
+                default:
+                    throw new Exception("Invalid grade");
+            }                      
         }
         public void AddGrade(double grade)
         {
@@ -129,15 +169,6 @@
 
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 
