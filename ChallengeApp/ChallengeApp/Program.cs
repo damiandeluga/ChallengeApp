@@ -6,7 +6,7 @@ Console.WriteLine();
 Console.WriteLine("Aby zobaczyæ koñcow¹ ocenê, proszê nacisn¹æ q");
 Console.WriteLine();
 
-var employee = new EmployeeInMemory("Damian", "Kowalski");
+var employee = new EmployeeInFile("Damian", "Kowalski");
 employee.GradeAdded += Employee_GradeAdded;
 void Employee_GradeAdded(object sender, EventArgs args)
 {
