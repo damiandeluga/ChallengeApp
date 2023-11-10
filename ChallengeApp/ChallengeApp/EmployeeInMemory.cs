@@ -1,13 +1,32 @@
 ﻿namespace ChallengeApp
 {
-    internal class EmployeeInMemory : EmployeeBase
+    public class EmployeeInMemory : EmployeeBase
     {
-        private List<float> grades = new List<float>();
-        public EmployeeInMemory(string name, string surname, char gender) 
-            : base(name, surname, gender)
-        {
-        }
 
+        private List<float> grades = new List<float>();
+        public EmployeeInMemory(string name, string surname)
+            : base(name, surname)
+        {
+
+        }
+        public override event GradeAddedDelegate GradeAdded;
+        public override void AddGrade(float grade)
+        {
+
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
+            {
+                throw new Exception("Incorrect data entered");
+
+            }
+        }
         public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
@@ -17,20 +36,6 @@
             else
             {
                 throw new Exception("Invalid grade");
-            }
-        }
-
-        public override void AddGrade(float grade)
-        {
-
-            if (grade >= 0 && grade <= 100)
-            {
-                this.grades.Add(grade);
-            }
-            else
-            {
-                Console.WriteLine("Incorrect data entered");
-
             }
         }
         public override void AddGrade(double grade)
@@ -52,7 +57,7 @@
         }
 
         public override void AddGrade(char grade)
-       {
+        {
             switch (grade)
             {
                 case 'A':
@@ -102,6 +107,27 @@
                 }
             }
             statistics.Average = statistics.Average /= this.grades.Count;
+            switch (statistics.Average)
+            {
+                case var average when average >= 90:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 70:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 50:
+                    statistics.AverageLetter = 'D';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'E';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+            }
             return statistics;
         }
     }

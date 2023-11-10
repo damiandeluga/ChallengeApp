@@ -2,9 +2,9 @@
 {
     public interface IEmployee
     {
-        string Name {get;}
-        string Surname {get;}
-        char Gender { get;}
+        string Name { get; }
+        string Surname { get; }
+
 
         void AddGrade(string grade);
         void AddGrade(float grade);

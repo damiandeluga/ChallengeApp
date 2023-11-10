@@ -7,10 +7,27 @@ namespace ChallengeApp
     {
         private const string fileName = "WorkGrade.txt";
         private List<float> grades = new List<float>();
-        public EmployeeInFile(string name, string surname, char gender) : base(name, surname, gender)
+        public EmployeeInFile(string name, string surname) : base(name, surname)
         {
         }
+        public override event GradeAddedDelegate GradeAdded;
+        public override void AddGrade(float grade)
+        {
 
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
+            {
+                throw new Exception("Incorrect data entered");
+
+            }
+        }
         public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
@@ -22,20 +39,6 @@ namespace ChallengeApp
                 throw new Exception("Invalid grade");
             }
         }
-
-        public override void AddGrade(float grade)
-        {
-            if (grade >= 0 && grade <= 100)
-            {
-                this.grades.Add(grade);
-            }
-            else
-            {
-                Console.WriteLine("Incorrect data entered");
-
-            }
-        }
-
         public override void AddGrade(double grade)
         {
             float gradeInDouble = (float)grade;

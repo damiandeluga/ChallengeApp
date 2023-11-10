@@ -1,16 +1,21 @@
-﻿namespace ChallengeApp
+﻿using static ChallengeApp.EmployeeInMemory;
+
+namespace ChallengeApp
 {
     public abstract class EmployeeBase : IEmployee
     {
-        public EmployeeBase(string name, string surname, char gender)
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+        public abstract event GradeAddedDelegate GradeAdded;
+        public EmployeeBase(string name, string surname)
         {
             Name = name;
             Surname = surname;
-            Gender = gender;
+
         }
-        public string Name {  get; private set; }
-        public string Surname {  get; private set; }
-        public char Gender {  get; private set; }
+
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        public char Gender { get; private set; }
         public abstract void AddGrade(string grade);
         public abstract void AddGrade(float grade);
         public abstract void AddGrade(double grade);
